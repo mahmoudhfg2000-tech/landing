@@ -3,143 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بورتفوليو محمود - 10 مشاريع</title>
+    <title>MAHMOUD.CODE | 10 Premium Projects</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <style>
+        :root { --brand-color: #2563eb; --brand-bg: #f8fafc; }
         
+        /* 1. حماية النصوص من التحديد */
         body { 
             font-family: 'Cairo', sans-serif; 
-            transition: all 0.5s ease; 
-            -webkit-user-select: none; /* Safari */
-            -ms-user-select: none; /* IE 10+ */
-            user-select: none; /* Standard syntax */
+            background-color: var(--brand-bg);
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
         }
-        /* حل مشكلة تداخل الأسطر */
-        h1 { 
-            line-height: 1.4 !important; 
-            padding-bottom: 10px;
+
+        /* 2. حماية الصور من السحب (Drag and Drop) */
+        img {
+            pointer-events: none;
+            -webkit-user-drag: none;
         }
-        p { 
-            line-height: 1.8 !important; 
+
+        /* تنسيقات العناوين */
+        h1 { line-height: 1.2 !important; }
+        p { line-height: 1.8; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
-        .dynamic-img { 
-            transition: all 0.5s ease; 
-            object-fit: cover; 
-            width: 100%; 
-            height: 450px; 
-            border-radius: 40px; 
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+
+        .btn-dynamic {
+            background-color: var(--brand-color);
+            box-shadow: 0 10px 20px -5px var(--brand-color);
+            transition: all 0.3s ease;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900" id="main-body">
+<body>
 
-    <nav class="p-8 flex justify-between items-center max-w-7xl mx-auto">
-        <div class="text-3xl font-black tracking-tighter" id="logo">MAHMOUD.DEV</div>
-        <div class="flex items-center gap-4">
-            <span class="text-sm font-bold text-slate-400">اختر المشروع:</span>
-            <select id="project-switcher" class="bg-white border border-slate-200 p-3 rounded-xl font-bold text-sm shadow-sm outline-none cursor-pointer">
-                <option value="coffee">1. متجر قهوة مختصة ☕</option>
-                <option value="fashion">2. متجر ملابس مودرن 👕</option>
-                <option value="gym">3. نادي رياضي وحوش 💪</option>
-                <option value="tech">4. وكالة برمجيات 💻</option>
-                <option value="food">5. مطعم برجر 🍔</option>
-                <option value="realestate">6. تسويق عقاري 🏠</option>
-                <option value="barber">7. صالون حلاقة ✂️</option>
-                <option value="travel">8. رحلات سياحية ✈️</option>
-                <option value="cars">9. معرض سيارات 🏎️</option>
-                <option value="interior">10. ديكور داخلي 🛋️</option>
+    <nav class="p-6 fixed top-0 w-full z-50 glass-card" data-aos="fade-down">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-black" id="logo-name" style="color: var(--brand-color)">MAHMOUD.CODE</div>
+            <select id="theme-master" class="bg-white border-2 border-slate-200 p-2 rounded-xl font-bold text-sm outline-none cursor-pointer">
+                <option value="tech">💻 وكالة تقنية</option>
+                <option value="coffee">☕ قهوة مختصة</option>
+                <option value="fashion">👕 ملابس مودرن</option>
+                <option value="gym">💪 نادي رياضي</option>
+                <option value="food">🍔 مطعم برجر</option>
+                <option value="realestate">🏠 عقارات</option>
+                <option value="barber">✂️ حلاقة</option>
+                <option value="travel">✈️ سياحة</option>
+                <option value="cars">🏎️ سيارات</option>
+                <option value="interior">🛋️ ديكور</option>
             </select>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center gap-16">
-        <div class="flex-1 space-y-10 text-right">
-            <h1 class="text-5xl md:text-7xl font-black text-slate-900" id="title">
-                عنوان المشروع <br>
-                <span id="highlight" class="text-blue-600">يظهر هنا</span>
-            </h1>
-            <p class="text-xl text-slate-500 max-w-2xl" id="desc">
-                هذا النص تجريبي لوصف المشروع والخدمات التي يقدمها المتجر للعملاء بشكل احترافي.
-            </p>
-            <div class="flex gap-4 pt-6">
-                <a id="btn-main" href="https://wa.me/201555933301" class="px-12 py-5 bg-blue-600 text-white rounded-2xl font-bold text-xl shadow-lg transition hover:scale-105">
-                    اطلب الآن 🚀
-                </a>
+    <section class="min-h-screen flex items-center pt-24 px-6 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8" data-aos="fade-left">
+                <h1 class="text-5xl md:text-7xl font-black" id="title">
+                    نحن نصنع <br> <span id="target-text" style="color: var(--brand-color)">هوية رقمية</span>
+                </h1>
+                <p class="text-xl text-slate-500 max-w-md" id="desc">تجربة مستخدم فريدة تجمع بين سلاسة الكود وجمال التصميم.</p>
+                <button class="btn-dynamic px-10 py-5 text-white rounded-2xl font-bold text-lg shadow-2xl">تواصل الآن</button>
+            </div>
+            <div class="hero-visual" data-aos="zoom-in">
+                <img id="main-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f" class="w-full h-[450px] md:h-[550px] object-cover rounded-[2.5rem] shadow-2xl" alt="Work">
             </div>
         </div>
-        <div class="flex-1 w-full">
-            <img id="hero-img" src="" alt="Project Image" class="dynamic-img">
-        </div>
-    </main>
+    </section>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        const projects = {
-            coffee: {
-                logo: "COFFEE.BEANS", title: "رائحة القهوة..", highlight: "تعدل مزاجك", desc: "نستورد أفضل أنواع البن من إثيوبيا وكولومبيا لنقدم لك تجربة قهوة لا تُنسى في كل صباح.", color: "#7c2d12", img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085", bg: "#fffaf3"
-            },
-            fashion: {
-                logo: "Z-STORE", title: "ملابس تعبر..", highlight: "عن شخصيتك", desc: "اكتشف تشكيلة الشتاء الجديدة من أرقى خامات القطن المصري بتصاميم عالمية تناسب ذوقك.", color: "#000000", img: "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04", bg: "#ffffff"
-            },
-            gym: {
-                logo: "TITANS.GYM", title: "لا تتوقف..", highlight: "حتى تفتخر بنفسك", desc: "صالة رياضية مجهزة بأحدث الأجهزة العالمية مع طاقم تدريب متخصص لمتابعة نظامك الغذائي والتدريبي.", color: "#dc2626", img: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f", bg: "#fef2f2"
-            },
-            tech: {
-                logo: "CODE.CRAFT", title: "حلول تقنية..", highlight: "تسبق الزمن", desc: "نساعد الشركات في التحول الرقمي من خلال بناء مواقع وتطبيقات فائقة السرعة والأداء.", color: "#2563eb", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f", bg: "#f8fafc"
-            },
-            food: {
-                logo: "HOT.BURGER", title: "أقوى برجر..", highlight: "في المدينة", desc: "لحم بقري طازج 100% يُشوى يومياً ليقدم لك مع خلطتنا السرية والجبنة الذائبة.", color: "#ea580c", img: "https://images.unsplash.com/photo-1571091718767-18b5b1457add", bg: "#fff7ed"
-            },
-            realestate: {
-                logo: "ELITE.REALTY", title: "استثمر في..", highlight: "مستقبل عائلتك", desc: "نقدم لك أفضل الفرص العقارية في مجمعات سكنية فاخرة تضمن لك الراحة والخصوصية والأمان.", color: "#1e3a8a", img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6", bg: "#f0f9ff"
-            },
-            barber: {
-                logo: "GENTLEMAN.CUT", title: "احصل على..", highlight: "اللوك المثالي", desc: "خدمة حلاقة ملكية وعناية كاملة بالبشرة واللحية على أيدي أمهر الحلاقين المحترفين.", color: "#1e293b", img: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70", bg: "#f9fafb"
-            },
-            travel: {
-                logo: "WORLD.TRIP", title: "سافر حول..", highlight: "العالم معنا", desc: "استمتع برحلات سياحية منظمة لأجمل شواطئ المالديف وجبال سويسرا ببرامج تناسب ميزانيتك.", color: "#0891b2", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e", bg: "#ecfeff"
-            },
-            cars: {
-                logo: "LUXURY.CARS", title: "سيارة أحلامك..", highlight: "تنتظرك هنا", desc: "معرضنا يضم أحدث الموديلات العالمية من السيارات الرياضية والعائلية مع ضمان كامل وخدمة ما بعد البيع.", color: "#991b1b", img: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7", bg: "#fff1f2"
-            },
-            interior: {
-                logo: "HOME.ART", title: "منزلك يحتاج..", highlight: "لمسة إبداع", desc: "نحول المساحات الضيقة إلى أماكن تنبض بالحياة من خلال تصاميم ديكور مودرن واختيار ألوان مريحة.", color: "#365314", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7", bg: "#f7fee7"
+        AOS.init();
+
+        // 3. منع كليك يمين
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // 4. تعطيل اختصارات النسخ وفحص الصفحة (Inspect)
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 85 || e.keyCode === 73)) {
+                return false;
             }
+            if (e.keyCode === 123) { return false; } // F12
         };
 
-        const switcher = document.getElementById('project-switcher');
-        
-        function updateProject(key) {
-            const data = projects[key];
-            document.getElementById('logo').innerText = data.logo;
-            document.getElementById('title').innerHTML = `${data.title} <br><span id="highlight">${data.highlight}</span>`;
+        // 5. حماية من الـ Debugging (بتخلي السورس كود يعلق لو حد فتحه)
+        setInterval(() => { debugger; }, 100);
+
+        // بيانات المشاريع (نفس القائمة السابقة)
+        const projects = {
+            tech: { color: "#2563eb", bg: "#f8fafc", title: "وكالة تقنية..", target: "تسبق الزمن", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f", desc: "نطور برمجيات ذكية تساعد الشركات على التحول الرقمي الكامل." },
+            coffee: { color: "#7c2d12", bg: "#fffaf3", title: "رائحة القهوة..", target: "تعدل مزاجك", img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085", desc: "أجود أنواع البن البرازيلي المحمص يدوياً لنعطيك طاقة ليومك." },
+            fashion: { color: "#000000", bg: "#ffffff", title: "أناقتك هي..", target: "عنوان شخصيتك", img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8", desc: "أحدث صيحات الموضة العالمية بخامات مصرية وتصاميم عصرية." },
+            gym: { color: "#dc2626", bg: "#fef2f2", title: "لا تتوقف..", target: "حتى تفتخر", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48", desc: "صالة رياضية مجهزة بأحدث الأجهزة العالمية مع طاقم تدريب متخصص." },
+            food: { color: "#ea580c", bg: "#fff7ed", title: "أقوى برجر..", target: "في المدينة", img: "https://images.unsplash.com/photo-1571091718767-18b5b1457add", desc: "لحم بقري طازج 100% يُشوى يومياً ليقدم لك طعم لا يُنسى." },
+            realestate: { color: "#1e3a8a", bg: "#f0f9ff", title: "بيت أحلامك..", target: "ينتظرك هنا", img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6", desc: "نقدم لك أفضل الفرص العقارية في مجمعات سكنية فاخرة وآمنة." },
+            barber: { color: "#1e293b", bg: "#f9fafb", title: "احصل على..", target: "اللوك المثالي", img: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70", desc: "خدمة حلاقة ملكية وعناية كاملة بالبشرة واللحية على أيدي أمهر الحلاقين." },
+            travel: { color: "#0891b2", bg: "#ecfeff", title: "سافر حول..", target: "العالم معنا", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e", desc: "استمتع برحلات سياحية منظمة لأجمل مدن العالم بأسعار تنافسية." },
+            cars: { color: "#991b1b", bg: "#fff1f2", title: "سيارة أحلامك..", target: "بين يديك", img: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7", desc: "أكبر تشكيلة من السيارات الحديثة مع ضمان كامل وخدمة مميزة." },
+            interior: { color: "#365314", bg: "#f7fee7", title: "منزلك يحتاج..", target: "لمسة إبداع", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7", desc: "نحول المساحات الضيقة إلى أماكن تنبض بالحياة من خلال تصاميم مودرن." }
+        };
+
+        const themeSwitcher = document.getElementById('theme-master');
+        themeSwitcher.addEventListener('change', (e) => {
+            const data = projects[e.target.value];
+            document.documentElement.style.setProperty('--brand-color', data.color);
+            document.documentElement.style.setProperty('--brand-bg', data.bg);
+            document.getElementById('title').innerHTML = `${data.title} <br> <span id="target-text" style="color: ${data.color}">${data.target}</span>`;
             document.getElementById('desc').innerText = data.desc;
-            document.getElementById('hero-img').src = data.img;
-            document.getElementById('main-body').style.backgroundColor = data.bg;
-            document.getElementById('highlight').style.color = data.color;
-            document.getElementById('btn-main').style.backgroundColor = data.color;
-            document.getElementById('logo').style.color = data.color;
-        }
-
-        switcher.addEventListener('change', (e) => updateProject(e.target.value));
-        updateProject('coffee'); 
-
-    // منع كليك يمين
-    document.addEventListener('contextmenu', event => event.preventDefault());
-
-    // منع اختصارات الكيبورد (النسخ، عرض السورس كود، فحص العناصر)
-    document.onkeydown = function(e) {
-        if (e.ctrlKey && 
-            (e.keyCode === 67 || // Ctrl+C
-             e.keyCode === 86 || // Ctrl+V
-             e.keyCode === 85 || // Ctrl+U
-             e.keyCode === 117)) { // F12
-            return false;
-        } else {
-            return true;
-        }
-    };
+            document.getElementById('main-img').src = data.img;
+            document.getElementById('logo-name').style.color = data.color;
+            AOS.refresh();
+        });
     </script>
 </body>
 </html>
